@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -97,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VLCDemo\VLCDemo.csproj">
-      <Project>{2851C8D9-A9ED-4BAF-A644-61FBC6421F69}</Project>
+      <Project>{46B01953-A620-4481-BE73-470FA8E7F3E9}</Project>
       <Name>VLCDemo</Name>
     </ProjectReference>
   </ItemGroup>
