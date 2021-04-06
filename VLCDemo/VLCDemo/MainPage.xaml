@@ -5,7 +5,7 @@
              x:Class="VLCDemo.MainPage">
 
     <Grid>
-        <shared:VideoView x:Name="VideoView" Grid.Row="0" Grid.Column="0"/>
+        <shared:VideoView x:Name="VideoView" Grid.Row="0" Grid.Column="0"/> 
     </Grid>
 
 </ContentPage>
