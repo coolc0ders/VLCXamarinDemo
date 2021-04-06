@@ -10,7 +10,8 @@ namespace VLCDemo
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+            MainPage = new MediaPlayerElementPage(); //Font asset not found FontAwesome5Regular.otf'
         }
 
         protected override void OnStart()

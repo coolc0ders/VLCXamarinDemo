@@ -18,12 +18,12 @@ namespace VLCDemo
         {
             InitializeComponent();
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             //VideoView.MediaPlayerChanged += MediaPlayerChanged;
-
             Core.Initialize();
 
             _libVLC = new LibVLC();
