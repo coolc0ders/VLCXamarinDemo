@@ -14,13 +14,16 @@
                 WidthRequest="300"
                 VerticalOptions="Center"
                 HorizontalOptions="Start"
+                ValueChanged="VolumeSlider_ValueChanged"
                 Margin="-90,0,0,0"
                 BackgroundColor="White" MaximumTrackColor="SkyBlue" MinimumTrackColor="Blue"/>
 
         <Grid RowDefinitions="*,*" Margin="10"
               Grid.Row="1" BackgroundColor="White">
             <Slider x:Name="DurationSlider"
-                    MaximumTrackColor="SkyBlue" MinimumTrackColor="Blue"
+                    MaximumTrackColor="SkyBlue" 
+                    MinimumTrackColor="Blue"
+                    ValueChanged="DurationSlider_ValueChanged"
                     Maximum="100"/>
             <Label x:Name="ElapsedTimeLabel"
                    Grid.Row="1" Text="trew"
@@ -30,20 +33,25 @@
                    HorizontalOptions="End"/>
         </Grid>
 
-
-        <Grid ColumnDefinitions="*,*,*,*"
+        <Grid ColumnDefinitions="*,*,*,*,*"
               Grid.Row="2">
             <Button Text="Back 10secs"
+                    Clicked="Back10SecsButton_Clicked"
                     Grid.Column="0" FontSize="Caption"
                     x:Name="Back10SecsButton"/>
             <Button Text="Pause"
                     Grid.Column="1"
+                    Clicked="PlayPauseButton_Clicked"
                     x:Name="PlayPauseButton"/>
             <Button Text="Forward 10secs"
+                    Clicked="Forward10SecsButton_Clicked"
                     Grid.Column="2" FontSize="Caption"
                     x:Name="Forward10SecsButton"/>
             <Button x:Name="MuteUnMuteButton"
+                    Clicked="MuteUnMuteButton_Clicked"
                     Grid.Column="3" Text="Mute"/>
+            <Button x:Name="StopButton" Clicked="StopButton_Clicked"
+                    Grid.Column="4" Text="Stop"/>
         </Grid>
     </Grid>
 
