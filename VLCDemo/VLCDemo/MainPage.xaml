@@ -4,8 +4,47 @@
              xmlns:shared="clr-namespace:LibVLCSharp.Forms.Shared;assembly=LibVLCSharp.Forms"
              x:Class="VLCDemo.MainPage">
 
-    <Grid>
-        <shared:VideoView x:Name="VideoView" Grid.Row="0" Grid.Column="0"/> 
+    <Grid RowDefinitions="*,Auto,Auto,Auto">
+
+        <shared:VideoView x:Name="VideoView" Grid.Row="0" Grid.Column="0"/>
+
+        <Slider x:Name="VolumeSlider" Maximum="100"
+                Rotation="90"
+                HeightRequest="30"
+                WidthRequest="300"
+                VerticalOptions="Center"
+                HorizontalOptions="Start"
+                Margin="-90,0,0,0"
+                BackgroundColor="White" MaximumTrackColor="SkyBlue" MinimumTrackColor="Blue"/>
+
+        <Grid RowDefinitions="*,*" Margin="10"
+              Grid.Row="1" BackgroundColor="White">
+            <Slider x:Name="DurationSlider"
+                    MaximumTrackColor="SkyBlue" MinimumTrackColor="Blue"
+                    Maximum="100"/>
+            <Label x:Name="ElapsedTimeLabel"
+                   Grid.Row="1" Text="trew"
+                   HorizontalOptions="Start"/>
+            <Label x:Name="DurationLabel"
+                   Grid.Row="1" Text="asd"
+                   HorizontalOptions="End"/>
+        </Grid>
+
+
+        <Grid ColumnDefinitions="*,*,*,*"
+              Grid.Row="2">
+            <Button Text="Back 10secs"
+                    Grid.Column="0" FontSize="Caption"
+                    x:Name="Back10SecsButton"/>
+            <Button Text="Pause"
+                    Grid.Column="1"
+                    x:Name="PlayPauseButton"/>
+            <Button Text="Forward 10secs"
+                    Grid.Column="2" FontSize="Caption"
+                    x:Name="Forward10SecsButton"/>
+            <Button x:Name="MuteUnMuteButton"
+                    Grid.Column="3" Text="Mute"/>
+        </Grid>
     </Grid>
 
 </ContentPage>
