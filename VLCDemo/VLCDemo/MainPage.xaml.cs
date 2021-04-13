@@ -34,6 +34,7 @@ namespace VLCDemo
 
             VideoView.MediaPlayer = _mediaPlayer;
             _mediaPlayer.PositionChanged += MediaPlayerPositionChanged;
+            _mediaPlayer.
             _mediaPlayer.Play();
         }
 
@@ -49,7 +50,7 @@ namespace VLCDemo
 
         void SeekTo(TimeSpan seconds)
         {
-            _mediaPlayer.Time = (long)seconds.TotalSeconds;
+            _mediaPlayer.Time = (long)seconds.TotalMilliseconds;
         }
 
         private void PlayPauseButton_Clicked(object sender, EventArgs e)
@@ -63,12 +64,12 @@ namespace VLCDemo
 
         private void Back10SecsButton_Clicked(object sender, EventArgs e)
         {
-            SeekTo(TimeSpan.FromSeconds(_mediaPlayer.Time - 10));
+            SeekTo(TimeSpan.FromMilliseconds(_mediaPlayer.Time) - TimeSpan.FromSeconds(10));
         }
 
         private void Forward10SecsButton_Clicked(object sender, EventArgs e)
         {
-            SeekTo(TimeSpan.FromSeconds(_mediaPlayer.Time + 10));
+            SeekTo(TimeSpan.FromMilliseconds(_mediaPlayer.Time) + TimeSpan.FromSeconds(10));
         }
 
         private void DurationSlider_ValueChanged(object sender, ValueChangedEventArgs e)
