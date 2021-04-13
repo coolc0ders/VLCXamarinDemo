@@ -31,11 +31,41 @@ namespace VLCDemo
             {
                 Media = new Media(_libVLC, new Uri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"))
             };
-
+            
             VideoView.MediaPlayer = _mediaPlayer;
             _mediaPlayer.PositionChanged += MediaPlayerPositionChanged;
-            _mediaPlayer.
+            _mediaPlayer.TimeChanged += MediaPlayer_TimeChanged;
+            _mediaPlayer.EncounteredError += MediaPlayer_EncounteredError;
+            _mediaPlayer.EndReached += MediaPlayer_EndReached;
+            _mediaPlayer.Playing += MediaPlayer_Playing;
             _mediaPlayer.Play();
+        }
+
+        private void MediaPlayer_Playing(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                DurationLabel.Text = string.Format("{0:mm\\:ss}", TimeSpan.FromMilliseconds(_mediaPlayer.Length));
+            });
+        }
+
+        private void MediaPlayer_TimeChanged(object sender, MediaPlayerTimeChangedEventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                ElapsedTimeLabel.Text = string.Format("{0:mm\\:ss}", TimeSpan.FromMilliseconds(_mediaPlayer.Time));
+            });
+        }
+
+        private void MediaPlayer_EncounteredError(object sender, EventArgs e)
+        {
+            //Called when an error occures while playing the media item.
+        }
+
+        private void MediaPlayer_EndReached(object sender, EventArgs e)
+        {
+            //Called when the media player terminates the current media
+            //Note: When this is called, if you have a queue to manage, call the next item on the queue.
         }
 
         private void MediaPlayerPositionChanged(object sender, MediaPlayerPositionChangedEventArgs e)
