@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,38 @@ namespace VLCDemo
             _mediaPlayer.Playing += MediaPlayer_Playing;
             _mediaPlayer.Play();
         }
+
+        public async Task PlayStreamWithHeaders()
+        {
+            var stream = await GetStreamFromUrl("http://mediathatrequireauth", new Dictionary<string, string>
+            {
+                { "Authentication", "Bearer {Token goes here}"}
+            });
+            var mediaInput = new StreamMediaInput(stream);
+            var media = new Media(_libVLC, mediaInput);
+            _mediaPlayer.Play(media);
+        }
+
+        private async Task<Stream> GetStreamFromUrl(string url, Dictionary<string, string> headers)
+        {
+            byte[] data;
+
+            using (var client = new System.Net.Http.HttpClient())
+            {
+                if (headers != null)
+                {
+                    foreach (var header in headers)
+                    {
+                        client.DefaultRequestHeaders.Add(header.Key, header.Value);
+                    }
+                }
+
+                data = await client.GetByteArrayAsync(url);
+            }
+
+            return new MemoryStream(data);
+        }
+
 
         private void MediaPlayer_Playing(object sender, EventArgs e)
         {
