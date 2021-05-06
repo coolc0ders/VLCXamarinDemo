@@ -137,7 +137,7 @@ namespace VLCDemo
 
         private void DurationSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            if (Math.Round(e.NewValue, 2) != Math.Round(_mediaPlayer.Position * 100, 2))
+            if (e.NewValue != Math.Round(_mediaPlayer.Position * 100, 2))
             {
                 var val = e.NewValue;
                 _mediaPlayer.Position = (float) (val / 100);
