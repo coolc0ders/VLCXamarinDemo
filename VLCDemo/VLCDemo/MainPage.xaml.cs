@@ -15,6 +15,31 @@ namespace VLCDemo
         LibVLC _libVLC;
         MediaPlayer _mediaPlayer;
 
+        #region MoviePosition
+        public static readonly BindableProperty MoviePositionProperty = BindableProperty.Create(nameof(MoviePosition), typeof(float), typeof(MainPage), propertyChanged: (obj, old, newV) =>
+        {
+            var me = obj as MainPage;
+            if (newV != null && !(newV is float)) return;
+            var oldMoviePosition = (float)old;
+            var newMoviePosition = (float)newV;
+            me?.MoviePositionChanged(oldMoviePosition, newMoviePosition);
+        });
+
+        private void MoviePositionChanged(float oldMoviePosition, float newMoviePosition)
+        {
+
+        }
+
+        /// <summary>
+        /// A bindable property
+        /// </summary>
+        public float MoviePosition
+        {
+            get => (float)GetValue(MoviePositionProperty);
+            set => SetValue(MoviePositionProperty, value);
+        }
+        #endregion
+
         public MainPage()
         {
             InitializeComponent();
@@ -103,7 +128,7 @@ namespace VLCDemo
 
         private void MediaPlayerPositionChanged(object sender, MediaPlayerPositionChangedEventArgs e)
         {
-            DurationSlider.Value = e.Position * 100;
+            MoviePosition = e.Position * 100;
         }
 
         private void StopButton_Clicked(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:shared="clr-namespace:LibVLCSharp.Forms.Shared;assembly=LibVLCSharp.Forms"
+             xmlns:vlcDemo="clr-namespace:VLCDemo;assembly=VLCDemo"
              x:Class="VLCDemo.MainPage">
 
     <Grid RowDefinitions="*,Auto,Auto,Auto">
@@ -23,6 +24,7 @@
             <Slider x:Name="DurationSlider"
                     MaximumTrackColor="SkyBlue" 
                     MinimumTrackColor="Blue"
+                    Value="{Binding MoviePosition, Mode=OneWay, Source={RelativeSource AncestorType={x:Type vlcDemo:MainPage}}}"
                     ValueChanged="DurationSlider_ValueChanged"
                     Maximum="100"/>
             <Label x:Name="ElapsedTimeLabel"
